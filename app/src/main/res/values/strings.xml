@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AuxiliaturasYa-PHP</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textViewIniciarSesion">Inicio de sesión</string>
+    <string name="textViewCodigo">Codigo</string>
+    <string name="textViewContraseña">Contraseña</string>
+    <string name="textButtonIniciarSesion">Iniciar sesión</string>
+    <string name="textButtonCrearCuenta">Crea tu cuenta</string>
+    <string name="textViewRegistroDeCuenta">Registro de cuenta</string>
+    <string name="textViewNombres">Nombres</string>
+    <string name="textViewApellidos">Apellidos</string>
+    <string name="textViewRegistrarse">Registrarse</string>
+    <string name="textViewRegistrarseAuxiliar">Registrarse como auxiliar !</string>
+    <string name="textViewRegistroAuxiliar">Registro de auxiliar</string>
+    <string name="textViewTelefono">Nro. de telefono</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+</resources>

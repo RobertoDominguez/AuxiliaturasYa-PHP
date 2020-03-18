@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/CardViewMateriaG"
+    android:layout_width="match_parent"
+    android:layout_height="257dp"
+    android:layout_marginLeft="0dp"
+    android:layout_marginTop="20dp"
+    android:orientation="vertical"
+    app:cardBackgroundColor="#F25C00"
+    app:cardCornerRadius="15dp">
+
+
+    <TextView
+        android:id="@+id/textViewNombreAuxiliarA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Nombre materia"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewNombreGrupoG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="70dp"
+        android:text="Nombre grupo"
+        android:textColor="#000000"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/textViewDiaG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="120dp"
+        android:text="Dia(s)"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textViewHoraG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="160dp"
+        android:text="Hora:"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+</androidx.cardview.widget.CardView>

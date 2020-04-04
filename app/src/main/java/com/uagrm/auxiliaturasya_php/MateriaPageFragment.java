@@ -1,22 +1,14 @@
 package com.uagrm.auxiliaturasya_php;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -32,36 +24,39 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 
 public class MateriaPageFragment extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
-    RequestQueue requestQueue;
-    JsonRequest jsonRequest;
 
-    ArrayList<Grupo> myDataset;
+    JsonRequest jsonRequest;
+    RequestQueue requestQueue;
+
+    ArrayList<Materia> myDataset;
     MateriaAdapter mAdapter;
     RecyclerView recyclerView;
 
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View vista= inflater.inflate(R.layout.fragment_materia_page, container, false);
 
         requestQueue = Volley.newRequestQueue(getContext());
 
-         recyclerView=(RecyclerView) vista.findViewById(R.id.RecyclerViewItemsMateria);
+        recyclerView=(RecyclerView) vista.findViewById(R.id.RecyclerViewItemsMateria);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
         myDataset=new ArrayList<>();
 
-        mAdapter=new MateriaAdapter(myDataset);
+        mAdapter=new MateriaAdapter(myDataset,getActivity());
         recyclerView.setAdapter(mAdapter);
 
         obtenerMaterias();
+
+
+
         return vista;
     }
 
@@ -83,13 +78,9 @@ public class MateriaPageFragment extends Fragment implements Response.Listener<J
 
                 /////////////////////////////////////////////////////////////
 
+                Materia materia=new Materia(jsonObject.optString("nombreMateria"),jsonObject.optString("nombreFacultad") );
 
-
-                Grupo grupo=new Grupo(jsonObject.optString("nombreGrupo"),jsonObject.optString("nombreMateria"),
-                        jsonObject.optString("dia"),jsonObject.optString("hora"),
-                        jsonObject.optString("fechaIni"),jsonObject.optString("fechafin"));
-
-                myDataset.add(grupo);
+                myDataset.add(materia);
 
                 mAdapter.setDataset(myDataset);
                 recyclerView.setAdapter(mAdapter);
@@ -97,7 +88,7 @@ public class MateriaPageFragment extends Fragment implements Response.Listener<J
                 /////////////////////////////////////////////////////////////
 
 
-                Toast.makeText(getContext(),"datos"+jsonObject.optString("nombreGrupo"),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"datos"+jsonObject.optString("nombreMateria"),Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
                 hayDatos=false;
@@ -105,12 +96,12 @@ public class MateriaPageFragment extends Fragment implements Response.Listener<J
             }
             i++;
         }
-
     }
 
     private void obtenerMaterias(){
-        String url ="http://auxiliaturasya.000webhostapp.com/grupos.php";
+        String url ="http://auxiliaturasya.000webhostapp.com/materias.php";
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);
     }
+
 }

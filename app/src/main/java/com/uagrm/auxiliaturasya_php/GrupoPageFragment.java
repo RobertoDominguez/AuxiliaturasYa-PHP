@@ -2,6 +2,7 @@ package com.uagrm.auxiliaturasya_php;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,34 +27,39 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class AuxiliarPageFragment extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
-    JsonRequest jsonRequest;
+public class GrupoPageFragment extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
     RequestQueue requestQueue;
+    JsonRequest jsonRequest;
 
-
-    ArrayList<Auxiliar> myDataset;
-    AuxiliarAdapter mAdapter;
+    ArrayList<Grupo> myDataset;
+    GrupoAdapter mAdapter;
     RecyclerView recyclerView;
 
+    String facultad,materia;
+
+    public GrupoPageFragment(String _facultad,String _materia){
+        facultad=_facultad;
+        materia=_materia;
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View vista =inflater.inflate(R.layout.fragment_auxiliar_page, container, false);
+        View vista= inflater.inflate(R.layout.fragment_grupo_page, container, false);
 
         requestQueue = Volley.newRequestQueue(getContext());
 
-        recyclerView=(RecyclerView) vista.findViewById(R.id.RecyclerViewItemsAuxiliar);
+         recyclerView=(RecyclerView) vista.findViewById(R.id.RecyclerViewItemsGrupo);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
         myDataset=new ArrayList<>();
 
-        mAdapter=new AuxiliarAdapter(myDataset);
+        mAdapter=new GrupoAdapter(myDataset);
         recyclerView.setAdapter(mAdapter);
 
-        obtenerAuxiliares();
+        obtenerGrupos();
         return vista;
     }
 
@@ -75,11 +81,13 @@ public class AuxiliarPageFragment extends Fragment implements Response.Listener<
 
                 /////////////////////////////////////////////////////////////
 
-                Auxiliar auxiliar=new Auxiliar(jsonObject.optString("id_auxiliar"),jsonObject.optString("nombre"),
-                        jsonObject.optString("apellido"),jsonObject.optString("celular"),
-                        jsonObject.optString("habilitado"));
 
-                myDataset.add(auxiliar);
+
+                Grupo grupo=new Grupo(jsonObject.optString("nombreGrupo"),jsonObject.optString("nombreMateria"),
+                        jsonObject.optString("dia"),jsonObject.optString("hora"),
+                        jsonObject.optString("fechaIni"),jsonObject.optString("fechafin"));
+
+                myDataset.add(grupo);
 
                 mAdapter.setDataset(myDataset);
                 recyclerView.setAdapter(mAdapter);
@@ -87,7 +95,7 @@ public class AuxiliarPageFragment extends Fragment implements Response.Listener<
                 /////////////////////////////////////////////////////////////
 
 
-                Toast.makeText(getContext(),"nombre "+jsonObject.optString("nombre"),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"datos"+jsonObject.optString("nombreGrupo"),Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
                 hayDatos=false;
@@ -95,13 +103,11 @@ public class AuxiliarPageFragment extends Fragment implements Response.Listener<
             }
             i++;
         }
+
     }
 
-
-    void obtenerAuxiliares(){
-
-        String url ="http://auxiliaturasya.000webhostapp.com/auxiliares.php";
-
+    private void obtenerGrupos(){
+        String url ="http://auxiliaturasya.000webhostapp.com/grupos.php?"+"facultad="+facultad+"&materia="+materia;
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);
     }

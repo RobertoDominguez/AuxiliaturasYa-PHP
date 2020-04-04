@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction().replace(R.id.escenario,new SesionSelectionFragment()).commit();
         //fm.beginTransaction().replace(R.id.escenario,new SesionFragment()).commit();
         //fm.beginTransaction().replace(R.id.escenario,new AuxiliarPageFragment()).commit();
-       // fm.beginTransaction().replace(R.id.escenario,new MateriaPageFragment()).commit();
+
 
     }
 

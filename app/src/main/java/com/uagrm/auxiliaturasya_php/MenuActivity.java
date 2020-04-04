@@ -23,7 +23,13 @@ public class MenuActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        setUpViewPager(viewPager);
+
+        if (getIntent().getStringExtra("facultad") !=null ){
+            setUpViewPagerGrupo(viewPager);
+        }else{
+            setUpViewPager(viewPager);
+        }
+
     }
 
     private void setUpViewPager(ViewPager viewPager){
@@ -32,4 +38,13 @@ public class MenuActivity extends AppCompatActivity {
         tabViewPageAdapter.addFragment(new AuxiliarPageFragment(),"Auxiliares");
         viewPager.setAdapter(tabViewPageAdapter);
     }
+
+    private void setUpViewPagerGrupo(ViewPager viewPager){
+        TabViewPageAdapter tabViewPageAdapter=new TabViewPageAdapter(getSupportFragmentManager());
+        tabViewPageAdapter.addFragment(new GrupoPageFragment(getIntent().getExtras().getString("facultad"),getIntent().getExtras().getString("materia")),"materias");
+        tabViewPageAdapter.addFragment(new AuxiliarPageFragment(),"Auxiliares");
+        viewPager.setAdapter(tabViewPageAdapter);
+    }
+
+
 }

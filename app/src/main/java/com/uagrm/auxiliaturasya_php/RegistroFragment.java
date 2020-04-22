@@ -86,7 +86,7 @@ public class RegistroFragment extends Fragment implements Response.Listener<JSON
 
 
     public void registrarse(){
-        String url ="http://auxiliaturasya.000webhostapp.com/signup.php?codigo="+editTextCodigoR.getText().toString()+"&ci="+
+        String url =getString(R.string.host)+"/signup.php?codigo="+editTextCodigoR.getText().toString()+"&ci="+
                 editTextContrasenaR.getText().toString()+"&nombre="+editTextNombreR.getText().toString()+"&apellido="+editTextApellidoR.getText().toString();
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);

@@ -88,7 +88,7 @@ public class RegistroAuxiliarFragment extends Fragment implements Response.Liste
     }
 
     void registrarse(){
-        String url ="http://auxiliaturasya.000webhostapp.com/signupAux.php?id_auxiliar="+editTextCodigoRA.getText().toString()+"&contraseña="+
+        String url =getString(R.string.host)+"/signupAux.php?id_auxiliar="+editTextCodigoRA.getText().toString()+"&contraseña="+
                 editTextContrasenaRA.getText().toString()+"&nombre="+editTextNombreRA.getText().toString()+"&apellido="
                 +editTextApellidoRA.getText().toString()+"&celular="+editTextTelefonoRA.getText().toString();
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);

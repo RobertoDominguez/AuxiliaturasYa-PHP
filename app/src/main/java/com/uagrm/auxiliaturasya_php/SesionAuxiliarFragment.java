@@ -1,5 +1,6 @@
 package com.uagrm.auxiliaturasya_php;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -87,13 +88,13 @@ public class SesionAuxiliarFragment extends Fragment implements Response.Listene
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Toast.makeText(getContext(),"Se ha encontrado el usuario "+auxiliar.getNombre().toString()+".",Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getContext(),"Se ha encontrado el usuario "+auxiliar.getNombre().toString()+".",Toast.LENGTH_SHORT).show();
 
         irAMenuAuxiliar();
     }
 
     void iniciarSesionAuxiliar(){
-        String url ="http://auxiliaturasya.000webhostapp.com/loginAux.php?codigo="
+        String url =getString(R.string.host)+"/loginAux.php?codigo="
                 +editTextCodigo.getText().toString()+"&ci="+editTextContrasena.getText().toString();
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);
@@ -106,7 +107,9 @@ public class SesionAuxiliarFragment extends Fragment implements Response.Listene
     }
 
     void irAMenuAuxiliar(){
-
+        Intent intent=new Intent(getActivity(),MenuAuxiliarActivity.class);
+        intent.putExtra("codigo",editTextCodigo.getText().toString());
+        startActivity(intent);
     }
 
 }

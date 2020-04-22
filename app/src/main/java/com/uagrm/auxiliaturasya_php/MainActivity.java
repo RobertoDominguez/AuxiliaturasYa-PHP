@@ -7,7 +7,10 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.LinkedList;
@@ -20,12 +23,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fm=getSupportFragmentManager();
 
-        fm.beginTransaction().replace(R.id.escenario,new SesionSelectionFragment()).commit();
-        //fm.beginTransaction().replace(R.id.escenario,new SesionFragment()).commit();
-        //fm.beginTransaction().replace(R.id.escenario,new AuxiliarPageFragment()).commit();
 
+                new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ImageView splashScreen=(ImageView) findViewById(R.id.splashScreen);
+                splashScreen.setVisibility(View.INVISIBLE);
+
+                FragmentManager fm=getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.escenario,new SesionSelectionFragment()).commit();
+
+            }
+        },2000);
 
     }
 

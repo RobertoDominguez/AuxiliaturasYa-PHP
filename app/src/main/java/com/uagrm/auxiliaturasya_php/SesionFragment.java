@@ -34,6 +34,8 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
     Button btnIniciarSesion;
     TextView textViewRegistrar,textViewRegistrarAux;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,13 +96,12 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
     }
 
     public void irAMenu(){
-
         Intent intent=new Intent(getActivity(),MenuActivity.class);
         startActivity(intent);
     }
 
     private void iniciarSesion(){
-        String url ="http://auxiliaturasya.000webhostapp.com/login.php?codigo="
+        String url =getString(R.string.host)+"/login.php?codigo="
                 +editTextCodigo.getText().toString()+"&ci="+editTextContrasena.getText().toString();
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);

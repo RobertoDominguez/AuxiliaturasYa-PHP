@@ -18,4 +18,6 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+
+    <string name="host">http://auxiliaturasya.000webhostapp.com</string>
 </resources>

@@ -95,7 +95,7 @@ public class GrupoPageFragment extends Fragment implements Response.Listener<JSO
                 /////////////////////////////////////////////////////////////
 
 
-                Toast.makeText(getContext(),"datos"+jsonObject.optString("nombreGrupo"),Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(getContext(),"datos"+jsonObject.optString("nombreGrupo"),Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
                 hayDatos=false;
@@ -107,7 +107,7 @@ public class GrupoPageFragment extends Fragment implements Response.Listener<JSO
     }
 
     private void obtenerGrupos(){
-        String url ="http://auxiliaturasya.000webhostapp.com/grupos.php?"+"facultad="+facultad+"&materia="+materia;
+        String url =getString(R.string.host)+"/grupos.php?"+"facultad="+facultad+"&materia="+materia;
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);
     }

@@ -3,9 +3,12 @@ package com.uagrm.auxiliaturasya_php;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,8 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -31,7 +36,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MyViewHo
         TextView textViewNombreMateriaM;
         TextView textViewNombreFacultadM;
         CardView cardViewMateriaM;
-
+        ImageView imageViewMateria;
 
         MyViewHolder(View v) {
             super(v);
@@ -39,7 +44,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MyViewHo
             textViewNombreMateriaM=(TextView) v.findViewById(R.id.textViewNombreMateriaM);
             textViewNombreFacultadM=(TextView) v.findViewById(R.id.textViewNombreFacultadM);
             cardViewMateriaM=(CardView) v.findViewById(R.id.CardViewMateriaM);
-
+            imageViewMateria=(ImageView) v.findViewById(R.id.imagenMateria);
         }
 
     }
@@ -70,6 +75,8 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MyViewHo
         return vh;
     }
 
+
+
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(MateriaAdapter.MyViewHolder holder, final int position) {
@@ -77,6 +84,8 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MyViewHo
         // - replace the contents of the view with that element
         holder.textViewNombreMateriaM.setText(mDataset.get(position).getNombreMateria());
         holder.textViewNombreFacultadM.setText(mDataset.get(position).getNombreFacultad());
+
+        holder.imageViewMateria.setImageDrawable(getImagenAleatoria(activity.getApplicationContext()));
 
         //al hacer click sobre la cardview cambia a la vista de grupos del cardview seleccionado
         holder.cardViewMateriaM.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +99,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MyViewHo
                 intent.putExtra("materia",materia);
                 activity.startActivity(intent);
 
-              Toast.makeText(activity.getApplicationContext(),"Facultad"+facultad,Toast.LENGTH_SHORT).show();
+             // Toast.makeText(activity.getApplicationContext(),"Facultad"+facultad,Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -101,4 +110,45 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MyViewHo
     public int getItemCount() {
         return mDataset.size();
     }
+
+    Drawable getImagenAleatoria(Context ctx){
+
+        int i= (int) (Math.random() * 9) + 1;
+        switch (i){
+            case 1:
+                return ctx.getResources().getDrawable(R.mipmap.a);
+
+            case 2:
+                return ctx.getResources().getDrawable(R.mipmap.b);
+
+            case 3:
+                return ctx.getResources().getDrawable(R.mipmap.c);
+
+            case 4:
+                return ctx.getResources().getDrawable(R.mipmap.d);
+
+            case 5:
+                return ctx.getResources().getDrawable(R.mipmap.e);
+
+            case 6:
+                return ctx.getResources().getDrawable(R.mipmap.f);
+
+            case 7:
+                return ctx.getResources().getDrawable(R.mipmap.g);
+
+            case 8:
+                return ctx.getResources().getDrawable(R.mipmap.h);
+
+            case 9:
+                return ctx.getResources().getDrawable(R.mipmap.i);
+
+            default:
+                return ctx.getResources().getDrawable(R.mipmap.a);
+
+        }
+
+    }
+
+
+
 }

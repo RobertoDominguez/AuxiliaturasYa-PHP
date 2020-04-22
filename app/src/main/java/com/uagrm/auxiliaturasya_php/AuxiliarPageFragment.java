@@ -87,7 +87,7 @@ public class AuxiliarPageFragment extends Fragment implements Response.Listener<
                 /////////////////////////////////////////////////////////////
 
 
-                Toast.makeText(getContext(),"nombre "+jsonObject.optString("nombre"),Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(getContext(),"nombre "+jsonObject.optString("nombre"),Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
                 hayDatos=false;
@@ -100,7 +100,7 @@ public class AuxiliarPageFragment extends Fragment implements Response.Listener<
 
     void obtenerAuxiliares(){
 
-        String url ="http://auxiliaturasya.000webhostapp.com/auxiliares.php";
+        String url =getString(R.string.host)+"/auxiliares.php";
 
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);

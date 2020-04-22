@@ -1,15 +1,15 @@
 package com.uagrm.auxiliaturasya_php;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,37 +26,38 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class MateriaPageFragment extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
-
-    JsonRequest jsonRequest;
+public class GrupoAuxiliarPageFragment extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
     RequestQueue requestQueue;
+    JsonRequest jsonRequest;
 
-    ArrayList<Materia> myDataset;
-    MateriaAdapter mAdapter;
+    ArrayList<Grupo> myDataset;
+    GrupoAdapter mAdapter;
     RecyclerView recyclerView;
 
+    String id_auxiliar;
+
+    public GrupoAuxiliarPageFragment(String _id_auxiliar){
+        id_auxiliar=_id_auxiliar;
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista= inflater.inflate(R.layout.fragment_materia_page, container, false);
+        View vista= inflater.inflate(R.layout.fragment_grupo_page, container, false);
 
         requestQueue = Volley.newRequestQueue(getContext());
 
-        recyclerView=(RecyclerView) vista.findViewById(R.id.RecyclerViewItemsMateria);
+         recyclerView=(RecyclerView) vista.findViewById(R.id.RecyclerViewItemsGrupo);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
         myDataset=new ArrayList<>();
 
-        mAdapter=new MateriaAdapter(myDataset,getActivity());
+        mAdapter=new GrupoAdapter(myDataset);
         recyclerView.setAdapter(mAdapter);
 
-        obtenerMaterias();
-
-
-
+        obtenerGrupos();
         return vista;
     }
 
@@ -78,9 +79,13 @@ public class MateriaPageFragment extends Fragment implements Response.Listener<J
 
                 /////////////////////////////////////////////////////////////
 
-                Materia materia=new Materia(jsonObject.optString("nombreMateria"),jsonObject.optString("nombreFacultad"),jsonObject.optString("imagenMateria") );
 
-                myDataset.add(materia);
+
+                Grupo grupo=new Grupo(jsonObject.optString("nombreGrupo"),jsonObject.optString("nombreMateria"),
+                        jsonObject.optString("dia"),jsonObject.optString("hora"),
+                        jsonObject.optString("fechaIni"),jsonObject.optString("fechafin"));
+
+                myDataset.add(grupo);
 
                 mAdapter.setDataset(myDataset);
                 recyclerView.setAdapter(mAdapter);
@@ -88,7 +93,7 @@ public class MateriaPageFragment extends Fragment implements Response.Listener<J
                 /////////////////////////////////////////////////////////////
 
 
-              //  Toast.makeText(getContext(),"datos"+jsonObject.optString("nombreMateria"),Toast.LENGTH_SHORT).show();
+           //     Toast.makeText(getContext(),"datos"+jsonObject.optString("nombreGrupo"),Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
                 hayDatos=false;
@@ -96,12 +101,12 @@ public class MateriaPageFragment extends Fragment implements Response.Listener<J
             }
             i++;
         }
+
     }
 
-    private void obtenerMaterias(){
-        String url =getString(R.string.host)+"/materias.php";
+    private void obtenerGrupos(){
+        String url =getString(R.string.host)+"/gruposAuxiliar.php?"+"auxiliar="+id_auxiliar;
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);
     }
-
 }

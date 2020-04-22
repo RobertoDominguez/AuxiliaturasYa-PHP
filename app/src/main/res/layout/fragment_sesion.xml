@@ -11,12 +11,11 @@
         android:id="@+id/textViewIniciarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginLeft="132dp"
         android:layout_marginTop="44dp"
         android:text="@string/textViewIniciarSesion"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,10 +23,10 @@
         android:id="@+id/textViewCodigo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
         android:layout_marginTop="56dp"
         android:text="nombre de Usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewIniciarSesion" />
 
@@ -35,10 +34,10 @@
         android:id="@+id/textViewContrasena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
         android:layout_marginTop="48dp"
         android:text="@string/textViewContraseña"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCodigo" />
 
@@ -46,10 +45,10 @@
         android:id="@+id/buttonIniciarSesion"
         android:layout_width="186dp"
         android:layout_height="52dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginLeft="108dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="80dp"
         android:text="@string/textButtonIniciarSesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextContrasena" />
 
@@ -57,25 +56,27 @@
         android:id="@+id/textViewCrearCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
         android:layout_marginTop="28dp"
         android:text="@string/textButtonCrearCuenta"
         android:textColor="#002069"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIniciarSesion" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIniciarSesion"
+        app:layout_constraintVertical_bias="0.004" />
 
     <EditText
         android:id="@+id/editTextContrasena"
         android:layout_width="332dp"
         android:layout_height="41dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewContrasena" />
 
@@ -83,11 +84,11 @@
         android:id="@+id/editTextCodigo"
         android:layout_width="332dp"
         android:layout_height="47dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCodigo" />
 

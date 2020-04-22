@@ -4,33 +4,45 @@
     android:id="@+id/CardViewMateriaM"
     android:layout_width="match_parent"
     android:layout_height="257dp"
-    android:layout_marginLeft="0dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:layout_marginTop="20dp"
     android:orientation="vertical"
-    app:cardBackgroundColor="#F25C00"
+    app:cardBackgroundColor="#ffff"
     app:cardCornerRadius="15dp">
 
+
+    <ImageView
+        android:id="@+id/imagenMateria"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        />
 
     <TextView
         android:id="@+id/textViewNombreFacultadM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="-50dp"
         android:text="Nombre facultad"
-        android:textColor="#000000"
+        android:textColor="#ffff"
         android:textSize="25dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        />
 
     <TextView
         android:id="@+id/textViewNombreMateriaM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
         android:text="Nombre materia"
-        android:textColor="#000000"
-        android:textSize="25dp" />
-
+        android:textColor="#ffff"
+        android:textSize="40dp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        />
 
 </androidx.cardview.widget.CardView>

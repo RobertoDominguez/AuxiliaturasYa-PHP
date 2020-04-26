@@ -2,15 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout3"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilAuxiliarFragment">
-
+    tools:context=".EstudianteAuxiliarActivity">
 
 
     <ImageView
-        android:id="@+id/imageViewFotoAuxiliarPA"
+        android:id="@+id/imageViewFotoAuxiliarEA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -20,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewNombreAuxiliarPA"
+        android:id="@+id/textViewNombreAuxiliarEA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre Auxiliar"
@@ -30,42 +29,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFotoAuxiliarPA" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFotoAuxiliarEA" />
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/ViewPagerPA"
+        android:id="@+id/ViewPagerEA"
         android:layout_width="match_parent"
-        android:layout_height="313dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAñadirMateriaAuxiliar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.962" />
-
-    <Button
-        android:id="@+id/buttonAñadirMateriaAuxiliar"
-        android:layout_width="336dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="16dp"
-        android:text="Añadir materia"
+        android:layout_height="430dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombreAuxiliarEA"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
         android:layout_marginTop="8dp"
-        android:text="Auxiliar de:"
         android:textColor="#000000"
         android:textSize="15sp"
+        android:text="Auxiliar de:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNombreAuxiliarPA" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombreAuxiliarEA" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

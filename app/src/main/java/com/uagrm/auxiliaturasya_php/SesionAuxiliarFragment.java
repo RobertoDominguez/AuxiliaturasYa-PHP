@@ -34,6 +34,8 @@ public class SesionAuxiliarFragment extends Fragment implements Response.Listene
     Button btnIniciarSesion;
     TextView textViewRegistrarAux;
 
+    Auxiliar auxiliar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class SesionAuxiliarFragment extends Fragment implements Response.Listene
 
     @Override
     public void onResponse(JSONObject response) {
-        Auxiliar auxiliar=new Auxiliar();
+        auxiliar=new Auxiliar();
 
         JSONArray jsonArray=response.optJSONArray("datos");
         JSONObject jsonObject=null;
@@ -109,6 +111,7 @@ public class SesionAuxiliarFragment extends Fragment implements Response.Listene
     void irAMenuAuxiliar(){
         Intent intent=new Intent(getActivity(),MenuAuxiliarActivity.class);
         intent.putExtra("codigo",editTextCodigo.getText().toString());
+        intent.putExtra("nombreCompletoAuxiliar",auxiliar.getNombre()+" "+auxiliar.getApellido());
         startActivity(intent);
     }
 

@@ -35,6 +35,12 @@ public class AuxiliarPageFragment extends Fragment implements Response.Listener<
     AuxiliarAdapter mAdapter;
     RecyclerView recyclerView;
 
+    String idMateria,idEstudiante;
+
+    public AuxiliarPageFragment(String _idMateria,String idEstudiante){
+        idMateria=_idMateria;
+        this.idEstudiante=idEstudiante;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +56,7 @@ public class AuxiliarPageFragment extends Fragment implements Response.Listener<
 
         myDataset=new ArrayList<>();
 
-        mAdapter=new AuxiliarAdapter(myDataset);
+        mAdapter=new AuxiliarAdapter(myDataset,this.getActivity(),idEstudiante);
         recyclerView.setAdapter(mAdapter);
 
         obtenerAuxiliares();
@@ -59,7 +65,7 @@ public class AuxiliarPageFragment extends Fragment implements Response.Listener<
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getContext(),"No se pudo obtener los datos"+error.toString(),Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getContext(),"No se pudo obtener los datos"+error.toString(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -100,7 +106,7 @@ public class AuxiliarPageFragment extends Fragment implements Response.Listener<
 
     void obtenerAuxiliares(){
 
-        String url =getString(R.string.host)+"/auxiliares.php";
+        String url =getString(R.string.host)+"/auxiliares.php?idMateria="+idMateria;
 
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);

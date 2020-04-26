@@ -1,16 +1,25 @@
 package com.uagrm.auxiliaturasya_php;
 
 public class Grupo {
-    String nombreGrupo,nombreMateria,dia,hora,fechaIni,fechaFin;
+    String idGrupo,nombreGrupo,nombreMateria,dia,hora,fechaIni,fechaFin;
 
 
-    public Grupo(String nombreGrupo, String nombreMateria, String dia, String hora, String fechaIni, String fechaFin) {
+    public Grupo(String nombreGrupo, String nombreMateria, String dia, String hora, String fechaIni, String fechaFin,String idGrupo) {
         this.nombreGrupo = nombreGrupo;
         this.nombreMateria = nombreMateria;
         this.dia = dia;
         this.hora = hora;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
+        this.idGrupo=idGrupo;
+    }
+
+    public String getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(String idGrupo) {
+        this.idGrupo = idGrupo;
     }
 
     public String getNombreGrupo() {

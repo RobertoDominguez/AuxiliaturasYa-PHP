@@ -35,6 +35,12 @@ public class MateriaPageFragment extends Fragment implements Response.Listener<J
     MateriaAdapter mAdapter;
     RecyclerView recyclerView;
 
+    String idEstudiante;
+
+    public  MateriaPageFragment(String idEstudiante){
+        this.idEstudiante=idEstudiante;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +56,7 @@ public class MateriaPageFragment extends Fragment implements Response.Listener<J
 
         myDataset=new ArrayList<>();
 
-        mAdapter=new MateriaAdapter(myDataset,getActivity());
+        mAdapter=new MateriaAdapter(myDataset,getActivity(),idEstudiante);
         recyclerView.setAdapter(mAdapter);
 
         obtenerMaterias();
@@ -78,7 +84,7 @@ public class MateriaPageFragment extends Fragment implements Response.Listener<J
 
                 /////////////////////////////////////////////////////////////
 
-                Materia materia=new Materia(jsonObject.optString("nombreMateria"),jsonObject.optString("nombreFacultad"),jsonObject.optString("imagenMateria") );
+                Materia materia=new Materia(jsonObject.optString("nombreMateria"),jsonObject.optString("nombreFacultad"),jsonObject.optString("idMateria") );
 
                 myDataset.add(materia);
 

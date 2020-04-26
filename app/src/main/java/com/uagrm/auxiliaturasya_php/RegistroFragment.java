@@ -96,5 +96,6 @@ public class RegistroFragment extends Fragment implements Response.Listener<JSON
         SesionFragment sesionFragment=new SesionFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.escenario,sesionFragment).addToBackStack(null).commit();
+
     }
 }

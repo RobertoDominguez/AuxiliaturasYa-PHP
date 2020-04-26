@@ -97,6 +97,7 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
 
     public void irAMenu(){
         Intent intent=new Intent(getActivity(),MenuActivity.class);
+        intent.putExtra("idEstudiante",editTextCodigo.getText().toString());
         startActivity(intent);
     }
 

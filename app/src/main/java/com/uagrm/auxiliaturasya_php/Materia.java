@@ -1,24 +1,24 @@
 package com.uagrm.auxiliaturasya_php;
 
 public class Materia {
-    String nombreMateria,nombreFacultad,imagen;
+    String idMateria,nombreMateria,nombreFacultad;
 
     public Materia(){
-        nombreFacultad=""; nombreMateria=""; imagen="";
+        nombreFacultad=""; nombreMateria=""; idMateria="";
     }
 
-    public Materia(String nombreMateria, String nombreFacultad, String imagen) {
+    public Materia(String nombreMateria, String nombreFacultad, String idMateria) {
         this.nombreMateria = nombreMateria;
         this.nombreFacultad = nombreFacultad;
-        this.imagen = imagen;
+        this.idMateria= idMateria;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getIdMateria() {
+        return idMateria;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setIdMateria(String idMateria) {
+        this.idMateria = idMateria;
     }
 
     public String getNombreMateria() {

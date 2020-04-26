@@ -6,9 +6,7 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,16 +19,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class GrupoAdapter extends RecyclerView.Adapter<GrupoAdapter.MyViewHolder> implements  Response.Listener<JSONObject>,Response.ErrorListener{
+public class GrupoAuxiliarAdapter extends RecyclerView.Adapter<GrupoAuxiliarAdapter.MyViewHolder> implements  Response.Listener<JSONObject>,Response.ErrorListener{
     private ArrayList<Grupo> mDataset;
     Activity activity;
-    String idEstudiante;
     RequestQueue requestQueue;
     JsonRequest jsonRequest;
 
@@ -63,10 +58,9 @@ public class GrupoAdapter extends RecyclerView.Adapter<GrupoAdapter.MyViewHolder
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    GrupoAdapter(ArrayList<Grupo> myDataset,Activity activity, String idEstudiante) {
+    GrupoAuxiliarAdapter(ArrayList<Grupo> myDataset,Activity activity) {
         mDataset = myDataset;
         this.activity=activity;
-        this.idEstudiante=idEstudiante;
     }
 
     void setDataset(ArrayList<Grupo> myDataset){
@@ -75,13 +69,11 @@ public class GrupoAdapter extends RecyclerView.Adapter<GrupoAdapter.MyViewHolder
 
     // Create new views (invoked by the layout manager)
     @Override
-    public GrupoAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+    public GrupoAuxiliarAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                         int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_header_grupo, parent, false);
-
-        requestQueue = Volley.newRequestQueue(activity.getApplicationContext());
 
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -99,33 +91,6 @@ public class GrupoAdapter extends RecyclerView.Adapter<GrupoAdapter.MyViewHolder
 
 
 
-        holder.cardViewGrupos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(activity);
-                builder.setIcon(R.drawable.ic_launcher_background).setTitle("Unirse a un grupo de Auxiliatura")
-                        .setMessage("¿Quieres unirte al grupo seleccionado?")
-                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                unirseAGrupo(mDataset.get(position).getIdGrupo());
-                                dialog.dismiss();
-                            }
-                        })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-
-                AlertDialog alertDialog=builder.create();
-               // alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                alertDialog.show();
-
-            }
-        });
 
     }
 
@@ -143,28 +108,16 @@ public class GrupoAdapter extends RecyclerView.Adapter<GrupoAdapter.MyViewHolder
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(activity.getApplicationContext(),"Ya estas inscrito al grupo!",Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onResponse(JSONObject response) {
 
-        JSONArray jsonArray=response.optJSONArray("datos");
-        JSONObject jsonObject=null;
-
-        try {
-            jsonObject=jsonArray.getJSONObject(0);
-            Toast.makeText(activity.getApplicationContext(),"Se ha inscrito al grupo exitosamente!",Toast.LENGTH_SHORT).show();
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(activity.getApplicationContext(),"Ya estas inscrito al grupo!",Toast.LENGTH_SHORT).show();
-        }
-
     }
 
-    private void unirseAGrupo(String idGrupo){
-        String url =activity.getApplicationContext().getString(R.string.host)+"/nuevoInscribe.php?idEstudiante="+idEstudiante+"&idGrupo="+idGrupo;
+    private void cancelarGrupo(String idGrupo){
+        String url =activity.getApplicationContext().getString(R.string.host)+"/";
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);
     }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/CardViewMateriaG"
+    android:id="@+id/CardViewAuxiliarA"
     android:layout_width="match_parent"
     android:layout_height="257dp"
     android:layout_marginLeft="0dp"
     android:layout_marginTop="20dp"
     android:orientation="vertical"
-    app:cardBackgroundColor="#3ab54a"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
     app:cardCornerRadius="15dp">
 
 

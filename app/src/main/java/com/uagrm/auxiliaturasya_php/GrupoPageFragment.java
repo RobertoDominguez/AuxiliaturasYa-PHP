@@ -35,11 +35,12 @@ public class GrupoPageFragment extends Fragment implements Response.Listener<JSO
     GrupoAdapter mAdapter;
     RecyclerView recyclerView;
 
-    String facultad,materia;
+    String facultad,materia,idEstudiante;
 
-    public GrupoPageFragment(String _facultad,String _materia){
+    public GrupoPageFragment(String _facultad,String _materia,String idEstudiante){
         facultad=_facultad;
         materia=_materia;
+        this.idEstudiante=idEstudiante;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class GrupoPageFragment extends Fragment implements Response.Listener<JSO
 
         myDataset=new ArrayList<>();
 
-        mAdapter=new GrupoAdapter(myDataset);
+        mAdapter=new GrupoAdapter(myDataset,this.getActivity(),idEstudiante);
         recyclerView.setAdapter(mAdapter);
 
         obtenerGrupos();
@@ -65,7 +66,7 @@ public class GrupoPageFragment extends Fragment implements Response.Listener<JSO
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getContext(),"No se pudo obtener los datos"+error.toString(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"No se pudo obtener los datos"+error.toString(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -85,7 +86,7 @@ public class GrupoPageFragment extends Fragment implements Response.Listener<JSO
 
                 Grupo grupo=new Grupo(jsonObject.optString("nombreGrupo"),jsonObject.optString("nombreMateria"),
                         jsonObject.optString("dia"),jsonObject.optString("hora"),
-                        jsonObject.optString("fechaIni"),jsonObject.optString("fechafin"));
+                        jsonObject.optString("fechaIni"),jsonObject.optString("fechafin"),jsonObject.optString("idGrupo"));
 
                 myDataset.add(grupo);
 

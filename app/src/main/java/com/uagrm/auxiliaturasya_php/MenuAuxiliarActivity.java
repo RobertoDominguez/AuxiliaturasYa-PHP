@@ -30,6 +30,8 @@ public class MenuAuxiliarActivity extends AppCompatActivity {
     private void setUpViewPager(ViewPager viewPager){
         TabViewPageAdapter tabViewPageAdapter=new TabViewPageAdapter(getSupportFragmentManager());
         tabViewPageAdapter.addFragment(new GrupoAuxiliarPageFragment(getIntent().getExtras().getString("codigo")),"Mis Grupos");
+        tabViewPageAdapter.addFragment(new PerfilAuxiliarFragment(getIntent().getExtras().getString("codigo")
+                ,getIntent().getExtras().getString("nombreCompletoAuxiliar")),"Mi Perfil");
         viewPager.setAdapter(tabViewPageAdapter);
     }
 

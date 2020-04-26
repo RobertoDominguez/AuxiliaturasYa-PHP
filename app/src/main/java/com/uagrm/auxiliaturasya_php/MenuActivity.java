@@ -34,15 +34,16 @@ public class MenuActivity extends AppCompatActivity {
 
     private void setUpViewPager(ViewPager viewPager){
         TabViewPageAdapter tabViewPageAdapter=new TabViewPageAdapter(getSupportFragmentManager());
-        tabViewPageAdapter.addFragment(new MateriaPageFragment(),"materias");
-        tabViewPageAdapter.addFragment(new AuxiliarPageFragment(),"Auxiliares");
+        tabViewPageAdapter.addFragment(new MateriaPageFragment(getIntent().getExtras().getString("idEstudiante").toString()),"Materias");
         viewPager.setAdapter(tabViewPageAdapter);
     }
 
     private void setUpViewPagerGrupo(ViewPager viewPager){
         TabViewPageAdapter tabViewPageAdapter=new TabViewPageAdapter(getSupportFragmentManager());
-        tabViewPageAdapter.addFragment(new GrupoPageFragment(getIntent().getExtras().getString("facultad"),getIntent().getExtras().getString("materia")),"materias");
-        tabViewPageAdapter.addFragment(new AuxiliarPageFragment(),"Auxiliares");
+        tabViewPageAdapter.addFragment(new GrupoPageFragment(getIntent().getExtras().getString("facultad")
+                ,getIntent().getExtras().getString("materia"),getIntent().getStringExtra("idEstudiante")),"Grupos");
+        tabViewPageAdapter.addFragment(new AuxiliarPageFragment(getIntent().getExtras().getString("idMateria")
+                ,getIntent().getStringExtra("idEstudiante").toString()),"Auxiliares");
         viewPager.setAdapter(tabViewPageAdapter);
     }
 

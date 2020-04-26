@@ -27,6 +27,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MyViewHo
 
     private ArrayList<Materia> mDataset;
     Activity activity;
+    String idEstudiante;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -52,9 +53,10 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MyViewHo
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    MateriaAdapter(ArrayList<Materia> myDataset,Activity _activity) {
+    MateriaAdapter(ArrayList<Materia> myDataset,Activity _activity,String idEstudiante) {
         mDataset = myDataset;
         activity=_activity;
+        this.idEstudiante=idEstudiante;
     }
 
     void setDataset(ArrayList<Materia> myDataset){
@@ -93,10 +95,13 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MyViewHo
             public void onClick(View v) {
               String facultad= mDataset.get(position).getNombreFacultad();
               String materia=mDataset.get(position).getNombreMateria();
+              String idMateria=mDataset.get(position).getIdMateria();
 
                 Intent intent=new Intent(activity,MenuActivity.class);
                 intent.putExtra("facultad",facultad);
                 intent.putExtra("materia",materia);
+                intent.putExtra("idMateria",idMateria);
+                intent.putExtra("idEstudiante",idEstudiante);
                 activity.startActivity(intent);
 
              // Toast.makeText(activity.getApplicationContext(),"Facultad"+facultad,Toast.LENGTH_SHORT).show();

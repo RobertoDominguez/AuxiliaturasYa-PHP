@@ -1,15 +1,15 @@
 package com.uagrm.auxiliaturasya_php;
 
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,38 +26,44 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class GrupoAuxiliarPageFragment extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
-    RequestQueue requestQueue;
-    JsonRequest jsonRequest;
 
-    ArrayList<Grupo> myDataset;
-    GrupoAuxiliarAdapter mAdapter;
+public class MateriaAuxiliarPageFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
+
+    JsonRequest jsonRequest;
+    RequestQueue requestQueue;
+
+    ArrayList<MateriaAuxiliar> myDataset;
+    MateriaAuxiliarAdapter mAdapter;
     RecyclerView recyclerView;
 
-    String id_auxiliar;
+    String idAuxiliar,idEstudiante;
 
-    public GrupoAuxiliarPageFragment(String _id_auxiliar){
-        id_auxiliar=_id_auxiliar;
+    public MateriaAuxiliarPageFragment(String id_aux,String idEstudiante){
+        this.idAuxiliar=id_aux;
+        this.idEstudiante=idEstudiante;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista= inflater.inflate(R.layout.fragment_grupo_page, container, false);
+        View vista= inflater.inflate(R.layout.fragment_materia_auxiliar_page, container, false);
 
         requestQueue = Volley.newRequestQueue(getContext());
 
-         recyclerView=(RecyclerView) vista.findViewById(R.id.RecyclerViewItemsGrupo);
+        recyclerView=(RecyclerView) vista.findViewById(R.id.RecyclerViewItemsMateriaAuxiliar);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
         myDataset=new ArrayList<>();
 
-        mAdapter=new GrupoAuxiliarAdapter(myDataset,this.getActivity());
+        mAdapter=new MateriaAuxiliarAdapter(myDataset,getActivity(),idEstudiante);
         recyclerView.setAdapter(mAdapter);
 
-        obtenerGrupos();
+        obtenerMateriaAuxiliares();
+
+
+
         return vista;
     }
 
@@ -79,13 +85,11 @@ public class GrupoAuxiliarPageFragment extends Fragment implements Response.List
 
                 /////////////////////////////////////////////////////////////
 
+                MateriaAuxiliar MateriaAuxiliar=new MateriaAuxiliar(jsonObject.optString("idMateria")
+                        ,jsonObject.optString("nombreMateria"),jsonObject.optString("idAuxiliar")
+                        ,jsonObject.optString("esAuxiliarOficial") ,jsonObject.optString("nombreFacultad"));
 
-
-                Grupo grupo=new Grupo(jsonObject.optString("nombreGrupo"),jsonObject.optString("nombreMateria"),
-                        jsonObject.optString("dia"),jsonObject.optString("hora"),
-                        jsonObject.optString("fechaIni"),jsonObject.optString("fechafin"),jsonObject.getString("idGrupo"));
-
-                myDataset.add(grupo);
+                myDataset.add(MateriaAuxiliar);
 
                 mAdapter.setDataset(myDataset);
                 recyclerView.setAdapter(mAdapter);
@@ -93,7 +97,7 @@ public class GrupoAuxiliarPageFragment extends Fragment implements Response.List
                 /////////////////////////////////////////////////////////////
 
 
-           //     Toast.makeText(getContext(),"datos"+jsonObject.optString("nombreGrupo"),Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(getContext(),"datos"+jsonObject.optString("nombreMateriaAuxiliar"),Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
                 hayDatos=false;
@@ -101,12 +105,12 @@ public class GrupoAuxiliarPageFragment extends Fragment implements Response.List
             }
             i++;
         }
-
     }
 
-    private void obtenerGrupos(){
-        String url =getString(R.string.host)+"/gruposAuxiliar.php?"+"auxiliar="+id_auxiliar;
+    private void obtenerMateriaAuxiliares(){
+        String url =getString(R.string.host)+"/materiaAuxiliar.php?id_auxiliar="+idAuxiliar;
         jsonRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonRequest);
     }
+
 }
